@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Adblock Detector Javascript</title>
+  </head>
+  <body>
+    <div id="detect"></div>
+    <div class="box">
+      <div class="mainIcon">
+        <div class="imgBox">
+          <i class="fas fa-exclamation icon"></i>
+        </div>
+      </div>
+      <header><h3>AdBlock Detected!</h3></header>
+      <p class="text">
+        Our website is made possible by displaying <br />
+        ads to our visitiors. Please support us by <br />
+        whitelisting our website
+      </p>
+      <button>Okay, I'll Whitelist</button>
+    </div>
+
+    <script>
+      const detect = document.querySelector("#detect");
+      const wrapper = document.querySelector(".box");
+      const button = wrapper.querySelector("button");
+      let adClasses = ["ad", "ads", "adsbox", "doubleclick", "ad-placement", "ad-placeholder", "adbadge", "BannerAd"];
+      for(let item of adClasses){
+        detect.classList.add(item);
+      }
+      let getProperty = window.getComputedStyle(detect).getPropertyValue("display");
+      if(!wrapper.classList.contains("show")){
+        getProperty == "none" ? wrapper.classList.add("show") : wrapper.classList.remove("show");
+      }
+      button.addEventListener("click", ()=>{
+        wrapper.classList.remove("show");
+      });
+    </script>
+
+  </body>
+</html>
